@@ -1,12 +1,19 @@
-import { MantineProvider } from '@mantine/core';
+import { MantineProvider, ColorSchemeScript } from '@mantine/core';
 import { LoginPage } from './pages/Login';
+import { theme } from './theme';
 
 import '@mantine/core/styles.css';
 
 export default function App() {
   return (
-    <MantineProvider>
-      <LoginPage />
-    </MantineProvider>
+    <>
+      <ColorSchemeScript />
+      <MantineProvider
+        theme={theme}
+        defaultColorScheme="light"
+      >
+        <LoginPage />
+      </MantineProvider>
+    </>
   );
 }

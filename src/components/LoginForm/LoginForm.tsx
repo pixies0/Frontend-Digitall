@@ -1,4 +1,4 @@
-import { Button, Group, Paper, PasswordInput, Stack, TextInput, Title } from '@mantine/core';
+import { Button, Group, Paper, PasswordInput, Stack, TextInput, Title, useMantineColorScheme } from '@mantine/core';
 import { useForm } from '@mantine/form';
 
 type LoginFormValues = {
@@ -7,6 +7,10 @@ type LoginFormValues = {
 };
 
 export const LoginForm = () => {
+
+  const { colorScheme } = useMantineColorScheme();
+  const isDark = colorScheme === 'dark';
+
   const form = useForm<LoginFormValues>({
     initialValues: {
       email: '',
@@ -46,7 +50,10 @@ export const LoginForm = () => {
         </Stack>
 
         <Group justify="space-between" mt="xl">
-          <Button type="submit" fullWidth>
+          <Button
+          color={isDark ? 'severanceRed' : 'severanceGreen'}
+          fullWidth
+          type="submit">
             Entrar
           </Button>
         </Group>
