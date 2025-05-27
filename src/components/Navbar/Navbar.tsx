@@ -27,7 +27,7 @@ export function Navbar() {
         width: "100%",
         backgroundColor:
           colorScheme === "dark"
-            ? theme.colors.severanceRed[7]
+            ? theme.colors.severanceRed[4]
             : theme.colors.severanceGreen[4],
         position: "sticky",
         top: 0,
@@ -57,6 +57,7 @@ export function Navbar() {
             fz="lg"
             c={colorScheme === "dark" ? "black" : "white"}
             underline="hover"
+            style={{ textDecoration: "none" }}
           >
             Login
           </Anchor>
@@ -67,6 +68,7 @@ export function Navbar() {
             fz="lg"
             c={colorScheme === "dark" ? "black" : "white"}
             underline="hover"
+            style={{ textDecoration: "none" }}
           >
             Registro
           </Anchor>
@@ -92,7 +94,7 @@ export function Navbar() {
           content: {
             backgroundColor:
               colorScheme === "dark"
-                ? theme.colors.severanceRed[7]
+                ? theme.colors.severanceRed[4]
                 : theme.colors.severanceGreen[4],
           },
         }}
@@ -105,6 +107,7 @@ export function Navbar() {
             fz="xl"
             onClick={close}
             c={colorScheme === "dark" ? "black" : "white"}
+            style={{ textDecoration: "none" }}
           >
             Login
           </Anchor>
@@ -115,6 +118,7 @@ export function Navbar() {
             fz="xl"
             onClick={close}
             c={colorScheme === "dark" ? "black" : "white"}
+            style={{ textDecoration: "none" }}
           >
             Registro
           </Anchor>

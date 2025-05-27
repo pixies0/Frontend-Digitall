@@ -25,7 +25,6 @@ export const LoginForm = () => {
 
   const handleSubmit = (values: LoginFormValues) => {
     console.log('Login data:', values);
-    // Aqui você pode chamar sua API de autenticação
   };
 
   return (
