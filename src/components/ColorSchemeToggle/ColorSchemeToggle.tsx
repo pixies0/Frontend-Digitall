@@ -13,11 +13,11 @@ export const ColorSchemeToggle = () => {
     <Tooltip label={`${computedColorScheme === 'light' ? 'innie' : 'outtie'}`}>
       <ActionIcon
         onClick={toggleColorScheme}
-        variant="outline"
         size="lg"
         aria-label="Alternar tema"
+        color={computedColorScheme === 'light' ? 'severanceGreen' : 'severanceRed'}
       >
-        {computedColorScheme === 'light' ? <Plug size={25} /> : <Unplug size={25} />}
+        {computedColorScheme === 'light' ? <Plug size={25} color='white'/> : <Unplug size={25} color='black'/>}
       </ActionIcon>
     </Tooltip>
   );
