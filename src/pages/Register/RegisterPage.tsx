@@ -1,13 +1,16 @@
-import { Text } from "@mantine/core";
-import { Navbar } from "../../components/Navbar/Navbar";
+import { Center } from '@mantine/core';
+import { RegisterForm } from '../../components/RegisterForm';
+import { Navbar } from '../../components/Navbar/Navbar';
+import { Footer } from '../../components/Footer';
 
-export function RegisterPage() {
+export const RegisterPage = () => {
   return (
     <>
       <Navbar />
-      <Text ta="center" mt="xl">
-        Página de Registro em construção.
-      </Text>
+      <Center style={{ minHeight: '80vh' }}>
+        <RegisterForm />
+      </Center>
+      <Footer />
     </>
   );
-}
+};
