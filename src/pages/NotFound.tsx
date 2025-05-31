@@ -1,26 +1,79 @@
-// src/pages/NotFound.tsx
 import { Link } from "react-router-dom";
-import { Box, Title, Text, Button } from "@mantine/core";
+import {
+  Box,
+  Button,
+  Container,
+  Stack,
+  Title,
+  useMantineColorScheme,
+  useMantineTheme,
+} from "@mantine/core";
+
+import { Navbar } from "../components/Navbar";
+import { Footer } from "../components/Footer";
+
+import errorDois from "../assets/errorDois.jpg";
+import errorTres from "../assets/errorTres.jpg";
 
 export function NotFound() {
+  const { colorScheme } = useMantineColorScheme();
+  const theme = useMantineTheme();
+
+  const primaryColor =
+    colorScheme === "dark"
+      ? theme.colors.severanceRed[5]
+      : theme.colors.severanceGreen[9];
+
   return (
-    <Box
-      style={{
-        height: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        textAlign: "center",
-      }}
-    >
-      <Title order={1}>404</Title>
-      <Text size="lg" mt="sm">
-        Página não encontrada!
-      </Text>
-      <Button component={Link} to="/" mt="md" color="green">
-        Voltar para Home
-      </Button>
-    </Box>
+    <>
+      <Navbar />
+
+      <Box
+        style={{
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundImage: `url(${
+            colorScheme === "dark" ? errorTres : errorDois
+          })`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          paddingTop: "5rem",
+          paddingBottom: "5rem",
+        }}
+      >
+        <Container size="md">
+          <Stack align="center" gap="xs">
+            <Title
+              order={1}
+              style={{
+                fontSize: "10rem",
+                lineHeight: 1,
+                color: primaryColor,
+                userSelect: "none",
+              }}
+            >
+              404
+            </Title>
+            <Title order={2} ta="center">
+              Página não encontrada
+            </Title>
+            <Button
+              component={Link}
+              to="/"
+              mt="md"
+              size="md"
+              color={colorScheme === "dark" ? "severanceRed" : "severanceGreen"}
+            >
+              ← Voltar para Home
+            </Button>
+          </Stack>
+        </Container>
+      </Box>
+
+      <Footer />
+    </>
   );
 }
