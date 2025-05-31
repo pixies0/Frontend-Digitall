@@ -44,7 +44,7 @@ export function Navbar() {
           style={{ textDecoration: "none" }}
         >
           <Group gap={8}>
-            <LibraryBig size={24} strokeWidth={2} />
+            <LibraryBig size={32} strokeWidth={2} />
             DigitaLL
           </Group>
         </Anchor>
