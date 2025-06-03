@@ -1,30 +1,50 @@
-import { Button, Group, Paper, PasswordInput, Stack, TextInput, Title, useMantineColorScheme } from '@mantine/core';
-import { useForm } from '@mantine/form';
+import {
+  Button,
+  Group,
+  Paper,
+  PasswordInput,
+  Stack,
+  TextInput,
+  Title,
+  useMantineColorScheme,
+} from "@mantine/core";
+import { useForm } from "@mantine/form";
+
+import { authService } from '../../services/authService';
+import { useNavigate } from 'react-router-dom';
 
 type LoginFormValues = {
-  email: string;
+  registration: string;
   password: string;
 };
 
 export const LoginForm = () => {
-
   const { colorScheme } = useMantineColorScheme();
-  const isDark = colorScheme === 'dark';
+  const isDark = colorScheme === "dark";
+  const navigate = useNavigate();
 
   const form = useForm<LoginFormValues>({
     initialValues: {
-      email: '',
-      password: '',
+      registration: "",
+      password: "",
     },
 
     validate: {
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'E-mail inválido'),
-      password: (value) => (value.length >= 6 ? null : 'Mínimo 6 caracteres'),
+      password: (value) => (value.length >= 6 ? null : "Mínimo 6 caracteres"),
     },
   });
 
-  const handleSubmit = (values: LoginFormValues) => {
-    console.log('Login data:', values);
+  const handleSubmit = async (values: LoginFormValues) => {
+    try {
+      await authService.login({
+        registration: Number(values.registration),
+        password: values.password,
+      });
+
+      navigate("/dashboard");
+    } catch (error) {
+      alert("Login falhou. Verifique sua matrícula e senha.");
+    }
   };
 
   return (
@@ -36,23 +56,26 @@ export const LoginForm = () => {
       <form onSubmit={form.onSubmit(handleSubmit)}>
         <Stack>
           <TextInput
-            label="E-mail"
-            placeholder="seu@email.com"
-            {...form.getInputProps('email')}
+            label="Matrícula"
+            placeholder="123456789"
+            {...form.getInputProps("registration")}
+            type="number"
+            pattern="\d*"
           />
 
           <PasswordInput
             label="Senha"
-            placeholder="Sua senha"
-            {...form.getInputProps('password')}
+            placeholder="*********"
+            {...form.getInputProps("password")}
           />
         </Stack>
 
         <Group justify="space-between" mt="xl">
           <Button
-          color={isDark ? 'severanceRed' : 'severanceGreen'}
-          fullWidth
-          type="submit">
+            color={isDark ? "severanceRed" : "severanceGreen"}
+            fullWidth
+            type="submit"
+          >
             Entrar
           </Button>
         </Group>

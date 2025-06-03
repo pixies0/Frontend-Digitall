@@ -12,7 +12,8 @@ import {
 import { useForm } from "@mantine/form";
 import { useNavigate } from "react-router-dom";
 import { notifications } from "@mantine/notifications";
-import axios from "axios";
+
+import { api } from "../../lib/api";
 
 type RegisterFormValues = {
   name: string;
@@ -53,7 +54,7 @@ export const RegisterForm = () => {
 
   const handleSubmit = async (values: RegisterFormValues) => {
     try {
-     await axios.post("/api/register", {
+     await api.post("/register", {
         ...values,
         registration: Number(values.registration), // Converte para número, o backend espera assim
       });
