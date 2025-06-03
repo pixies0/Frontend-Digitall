@@ -12,6 +12,7 @@ import { useForm } from "@mantine/form";
 
 import { authService } from '../../services/authService';
 import { useNavigate } from 'react-router-dom';
+import { auth } from "../../lib/auth";
 
 type LoginFormValues = {
   registration: string;
@@ -40,7 +41,7 @@ export const LoginForm = () => {
         registration: Number(values.registration),
         password: values.password,
       });
-
+      auth.setToken(localStorage.getItem("token") || "");
       navigate("/dashboard");
     } catch (error) {
       alert("Login falhou. Verifique sua matrícula e senha.");

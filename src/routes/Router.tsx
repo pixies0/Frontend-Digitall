@@ -7,6 +7,7 @@ import { NotFound } from "../pages/NotFound";
 
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
+import { DashboardAdmin } from "../pages/Dashboard/Dashboards";
 
 export function AppRouter() {
   const isAuthenticated = Boolean(localStorage.getItem("token"));
@@ -18,12 +19,14 @@ export function AppRouter() {
         {/* Rotas públicas */}
         <Route element={<PublicRoute isAuthenticated={isAuthenticated} />}>
           <Route path="/" element={<HomePage />} />
+          <Route path="/index" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
         </Route>
 
         {/* Rotas privadas */}
         <Route element={<PrivateRoute isAuthenticated={isAuthenticated} />}>
+          <Route path="/dashboard" element={<DashboardAdmin />} />
         </Route>
 
         {/* Página de erro 404 */}

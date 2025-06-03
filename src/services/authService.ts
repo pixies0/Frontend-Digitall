@@ -22,6 +22,9 @@ export const authService = {
     const { token } = response.data;
 
     auth.setToken(token);
+    console.log("Token set:", token);
+    console.log("Token in localStorage:", localStorage.getItem("token"));
+    console.log("Usuário Logado")
     return response.data;
   },
 
