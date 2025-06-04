@@ -7,7 +7,7 @@ import { NotFound } from "../pages/NotFound";
 
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
-import { DashboardAdmin } from "../pages/Dashboard/Dashboards";
+import { DashboardAdmin, DashboardCommon, DashboardRedirect } from "../pages/Dashboard/Dashboards";
 
 export function AppRouter() {
 
@@ -24,7 +24,9 @@ export function AppRouter() {
 
         {/* Rotas privadas */}
         <Route element={<PrivateRoute />}>
-          <Route path="/dashboard" element={<DashboardAdmin />} />
+          <Route path="/dashboard" element={<DashboardRedirect />} />
+          <Route path="/dashboard/admin" element={<DashboardAdmin />} />
+          <Route path="/dashboard/common" element={<DashboardCommon />} />
         </Route>
 
         {/* Página de erro 404 */}
