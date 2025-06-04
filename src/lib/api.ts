@@ -27,11 +27,11 @@ api.interceptors.response.use(
     if (error.response) {
       const { status } = error.response;
 
-      if (status === 401) {
-        // Token inválido ou expirado
-        auth.removeToken();
-        window.location.href = "/login"; // Redireciona para login
-      }
+      // if (status === 401) {
+      //   // Token inválido ou expirado
+      //   auth.removeToken();
+      //   // window.location.href = "/login"; // Redireciona para login
+      // }
 
       if (status >= 500) {
         alert("Erro interno no servidor. Tente novamente mais tarde.");
