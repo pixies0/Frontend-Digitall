@@ -10,22 +10,20 @@ import { PublicRoute } from "./PublicRoute";
 import { DashboardAdmin } from "../pages/Dashboard/Dashboards";
 
 export function AppRouter() {
-  const isAuthenticated = Boolean(localStorage.getItem("token"));
 
   return (
     <BrowserRouter>
       <Routes>
 
         {/* Rotas públicas */}
-        <Route element={<PublicRoute isAuthenticated={isAuthenticated} />}>
+        <Route element={<PublicRoute />}>
           <Route path="/" element={<HomePage />} />
-          <Route path="/index" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
         </Route>
 
         {/* Rotas privadas */}
-        <Route element={<PrivateRoute isAuthenticated={isAuthenticated} />}>
+        <Route element={<PrivateRoute />}>
           <Route path="/dashboard" element={<DashboardAdmin />} />
         </Route>
 

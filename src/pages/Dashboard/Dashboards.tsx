@@ -7,7 +7,7 @@ export function DashboardCommon() {
 
   const handleLogout = async () => {
     await authService.logout();
-    navigate('/index');
+    navigate('/');
   };
 
   return (
@@ -28,7 +28,7 @@ export function DashboardAdmin() {
 
   const handleLogout = async () => {
     await authService.logout();
-    navigate('/index');
+    navigate('/');
   };
 
   return (

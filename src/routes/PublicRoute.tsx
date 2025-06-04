@@ -1,9 +1,9 @@
 import { Navigate, Outlet } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
-type PublicRouteProps = {
-  isAuthenticated: boolean;
-};
+export function PublicRoute() {
+  const { isAuthenticated } = useAuth(); // Obtenha o estado de autenticação do hook
 
-export function PublicRoute({ isAuthenticated }: PublicRouteProps) {
-  return !isAuthenticated ? <Outlet /> : <Navigate to="/" />;
+  // Se estiver autenticado, redirecione para o dashboard para evitar que o usuário acesse as rotas públicas novamente
+  return isAuthenticated ? <Navigate to="/dashboard" /> : <Outlet />;
 }
