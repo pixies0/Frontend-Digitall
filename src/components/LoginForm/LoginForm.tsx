@@ -9,9 +9,10 @@ import {
   useMantineColorScheme,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
+import { showNotification } from "@mantine/notifications";
 
-import { authService } from '../../services/authService';
-import { useNavigate } from 'react-router-dom';
+import { authService } from "../../services/authService";
+import { useNavigate } from "react-router-dom";
 
 type LoginFormValues = {
   registration: string;
@@ -40,9 +41,39 @@ export const LoginForm = () => {
         registration: Number(values.registration),
         password: values.password,
       });
-      navigate("/dashboard");
-    } catch (error) {
-      alert("Login falhou. Verifique sua matrícula e senha.");
+
+      showNotification({
+        title: "Login bem-sucedido!",
+        message: "Você foi logado com sucesso.",
+        color: "green",
+      });
+
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 1500);
+    } catch (error: any) {
+      // console.error("Erro no login:", error); // Para depuração
+      let errorMessage = "Login falhou. Verifique sua matrícula e senha.";
+
+      if (error.status === 401) {
+        errorMessage = "Não autorizado. Verifique sua matrícula e senha.";
+      }else if(error.status === 500) {
+        errorMessage = "Erro interno do servidor. Tente novamente mais tarde.";
+      }else if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        errorMessage = error.response.data.message;
+      } else{
+        errorMessage = error.message;
+      }
+
+      showNotification({
+        title: "Erro no Login",
+        message: errorMessage,
+        color: "red",
+      });
     }
   };
 
@@ -60,12 +91,14 @@ export const LoginForm = () => {
             {...form.getInputProps("registration")}
             type="number"
             pattern="\d*"
+            // error={form.errors.registration}
           />
 
           <PasswordInput
             label="Senha"
             placeholder="*********"
             {...form.getInputProps("password")}
+            // error={form.errors.password}
           />
         </Stack>
 
