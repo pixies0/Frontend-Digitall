@@ -120,7 +120,7 @@ export const RegisterForm = () => {
           <Stack>
             <TextInput
               label="Matrícula"
-              placeholder="Número de matrícula"
+              placeholder="20192365"
               withAsterisk
               {...form.getInputProps("registration")}
               onInput={(e) => {
