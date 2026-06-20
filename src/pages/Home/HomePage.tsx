@@ -9,8 +9,8 @@ import {
 } from "@mantine/core";
 
 import { Navbar } from "../../components/Navbar/Navbar";
-import bgImageDois from "../../assets/backgroundDois.jpg";
-import bgImageUm from "../../assets/backgroundUm.jpg";
+import bgImageDois from "../../assets/backgroundDois.avif";
+import bgImageUm from "../../assets/backgroundUm.avif";
 import { Footer } from "../../components/Footer";
 
 export function HomePage() {
@@ -28,6 +28,7 @@ export function HomePage() {
               : `url(${bgImageUm})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
+          backgroundColor: "#121212"
         }}
       >
         <Navbar />

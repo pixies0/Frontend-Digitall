@@ -12,8 +12,8 @@ import {
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 
-import errorDois from "../assets/errorDois.jpg";
-import errorTres from "../assets/errorTres.jpg";
+import errorDois from "../assets/errorDois.avif";
+import errorTres from "../assets/errorTres.avif";
 
 export function NotFound() {
   const { colorScheme } = useMantineColorScheme();
