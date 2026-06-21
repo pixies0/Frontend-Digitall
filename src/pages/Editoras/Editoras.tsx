@@ -104,7 +104,7 @@ export default function EditorasPage() {
     id: number
   ) {
     const confirmar = window.confirm(
-      "Deseja realmente excluir esta editoa?"
+      "Deseja realmente excluir esta editora?"
     );
 
     if (!confirmar) {
