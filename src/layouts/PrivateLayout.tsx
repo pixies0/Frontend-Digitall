@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+
 import { auth } from "../lib/auth";
+import { ColorSchemeToggle } from "../components/ColorSchemeToggle";
 
 import { AppShell, NavLink, Text, Stack, Divider, Group } from "@mantine/core";
 
@@ -18,6 +20,7 @@ import {
 } from "@tabler/icons-react";
 
 import { Outlet, Link, useLocation } from "react-router-dom";
+import { Box } from "lucide-react";
 
 export function PrivateLayout() {
   const location = useLocation();
@@ -120,6 +123,14 @@ export function PrivateLayout() {
             leftSection={<IconLogout size={18} />}
             onClick={handleLogout}
           />
+
+          <Divider my="md" />
+
+          <div style={{ marginTop: "370px" }}>
+          <Group justify="left">
+            <ColorSchemeToggle />
+          </Group>
+        </div>
         </Stack>
       </AppShell.Navbar>
 
