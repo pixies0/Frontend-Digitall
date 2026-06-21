@@ -1,3 +1,5 @@
+import React from "react";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { HomePage } from "../pages/Home/HomePage";
@@ -19,7 +21,7 @@ import EditorasPage from "../pages/Editoras/Editoras";
 import AutoresPage from "../pages/Autores/Autores";
 import LivrosPage from "../pages/Livros/Livros";
 import UnidadesPage from "../pages/Unidades/Unidades";
-
+import EmprestimosPage from "../pages/Emprestimos/Emprestimos";
 
 export function AppRouter() {
   return (
@@ -33,21 +35,18 @@ export function AppRouter() {
         </Route>
 
         {/* Rotas privadas */}
-        <Route
-          element={
-            <PrivateRoute>
-              <PrivateLayout />
-            </PrivateRoute>
-          }
-        >
-          <Route path="/dashboard" element={<DashboardRedirect />} />
-          <Route path="/dashboard/admin" element={<DashboardAdmin />} />
-          <Route path="/dashboard/common" element={<DashboardCommon />} />
+        <Route element={<PrivateRoute />}>
+          <Route element={<PrivateLayout />}>
+            <Route path="/dashboard" element={<DashboardRedirect />} />
+            <Route path="/dashboard/admin" element={<DashboardAdmin />} />
+            <Route path="/dashboard/common" element={<DashboardCommon />} />
 
-          <Route path="/autores" element={<AutoresPage />} />
-          <Route path="/editoras" element={<EditorasPage />} />
-          <Route path="/livros" element={<LivrosPage />} />
-          <Route path="/unidades" element={<UnidadesPage />} />
+            <Route path="/autores" element={<AutoresPage />} />
+            <Route path="/editoras" element={<EditorasPage />} />
+            <Route path="/livros" element={<LivrosPage />} />
+            <Route path="/unidades" element={<UnidadesPage />} />
+            <Route path="/emprestimos" element={<EmprestimosPage />} />
+          </Route>
         </Route>
 
         {/* Página de erro 404 */}
