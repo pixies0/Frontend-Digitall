@@ -46,11 +46,14 @@ export function PrivateLayout() {
       }}
     >
       <AppShell.Navbar p="md">
-        <Group mb="md">
-          <IconCrown size={28} />
-          <Text fw={700} size="xl">
-            DigitalLL
-          </Text>
+        <Group mb="md" justify="space-between">
+          <Group>
+            <IconCrown size={28} />
+            <Text fw={700} size="xl">
+              DigiTALL
+            </Text>
+          </Group>
+          <ColorSchemeToggle />
         </Group>
 
         <Divider mb="md" />
@@ -125,12 +128,6 @@ export function PrivateLayout() {
           />
 
           <Divider my="md" />
-
-          <div style={{ marginTop: "370px" }}>
-          <Group justify="left">
-            <ColorSchemeToggle />
-          </Group>
-        </div>
         </Stack>
       </AppShell.Navbar>
 

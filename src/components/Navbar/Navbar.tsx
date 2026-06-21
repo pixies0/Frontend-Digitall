@@ -45,7 +45,7 @@ export function Navbar() {
         >
           <Group gap={8}>
             <LibraryBig size={32} strokeWidth={2} />
-            DigitaLL
+            DigiTALL
           </Group>
         </Anchor>
 

@@ -113,9 +113,9 @@ export const LoginForm = () => {
           </Button>
         </Group>
         <Text size="xs" c="dimmed" ta="center" mt="sm">
-          Usuário de teste -
-          Matrícula: 2121 -
-          Senha: 123456
+          Usuário de <strong>Teste</strong> -
+          Matrícula: <strong>2121</strong> -
+          Senha: <strong>123456</strong>
         </Text>
       </form>
     </Paper>
