@@ -9,9 +9,9 @@ import {
 } from "@mantine/core";
 
 import { Navbar } from "../../components/Navbar/Navbar";
+import { Footer } from "../../components/Footer";
 import bgImageDois from "../../assets/backgroundDois.avif";
 import bgImageUm from "../../assets/backgroundUm.avif";
-import { Footer } from "../../components/Footer";
 
 export function HomePage() {
   const { colorScheme } = useMantineColorScheme();
