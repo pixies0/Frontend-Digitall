@@ -186,7 +186,7 @@ export default function AutoresPage() {
           {
             accessor: "id",
             title: "ID",
-            width: 80,
+            width: 50,
           },
           {
             accessor: "nome",
