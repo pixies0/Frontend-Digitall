@@ -7,6 +7,7 @@ import {
   TextInput,
   Title,
   useMantineColorScheme,
+  Text,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { showNotification } from "@mantine/notifications";
@@ -57,15 +58,15 @@ export const LoginForm = () => {
 
       if (error.status === 401) {
         errorMessage = "Não autorizado. Verifique sua matrícula e senha.";
-      }else if(error.status === 500) {
+      } else if (error.status === 500) {
         errorMessage = "Erro interno do servidor. Tente novamente mais tarde.";
-      }else if (
+      } else if (
         error.response &&
         error.response.data &&
         error.response.data.message
       ) {
         errorMessage = error.response.data.message;
-      } else{
+      } else {
         errorMessage = error.message;
       }
 
@@ -111,6 +112,11 @@ export const LoginForm = () => {
             Entrar
           </Button>
         </Group>
+        <Text size="xs" c="dimmed" ta="center" mt="sm">
+          Usuário de teste -
+          Matrícula: 2121 -
+          Senha: 123456
+        </Text>
       </form>
     </Paper>
   );

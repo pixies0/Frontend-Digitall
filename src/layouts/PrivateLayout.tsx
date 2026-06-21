@@ -1,4 +1,6 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../lib/auth";
 
 import { AppShell, NavLink, Text, Stack, Divider, Group } from "@mantine/core";
 
@@ -19,6 +21,19 @@ import { Outlet, Link, useLocation } from "react-router-dom";
 
 export function PrivateLayout() {
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    const confirmar = window.confirm(
+      "Deseja realmente sair do sistema?"
+    );
+
+    if (!confirmar) return;
+
+    auth.removeToken();
+
+    navigate("/");
+  };
 
   return (
     <AppShell
@@ -103,6 +118,7 @@ export function PrivateLayout() {
             label="Sair"
             color="red"
             leftSection={<IconLogout size={18} />}
+            onClick={handleLogout}
           />
         </Stack>
       </AppShell.Navbar>
