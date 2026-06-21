@@ -14,11 +14,13 @@ import {
 
 import { notifications } from "@mantine/notifications";
 import { IconPlus, IconEdit, IconTrash } from "@tabler/icons-react";
-import { listarAutores, criarAutor } from "../../services/autoresService";
+import { listarAutores, criarAutor, atualizarAutor, excluirAutor } from "../../services/autoresService";
 import type { Autor } from "../../types/autor";
 
 export default function AutoresPage() {
   const [autores, setAutores] = useState<Autor[]>([]);
+  const [autorSelecionado, setAutorSelecionado] =
+    useState<Autor | null>(null);
   const [modalAberto, setModalAberto] = useState(false);
   const [nome, setNome] = useState("");
 
@@ -37,29 +39,94 @@ export default function AutoresPage() {
 
   async function salvarAutor() {
     try {
-      await criarAutor(nome);
 
-      notifications.show({
-        title: "Sucesso",
-        message: "Autor cadastrado com sucesso!",
-        color: "green",
-      });
+      if (autorSelecionado) {
+
+        await atualizarAutor(
+          autorSelecionado.id,
+          nome
+        );
+
+        notifications.show({
+          title: "Sucesso",
+          message:
+            "Autor atualizado com sucesso",
+          color: "green",
+        });
+
+      } else {
+
+        await criarAutor(nome);
+
+        notifications.show({
+          title: "Sucesso",
+          message:
+            "Autor cadastrado com sucesso",
+          color: "green",
+        });
+
+      }
 
       setNome("");
+      setAutorSelecionado(null);
       setModalAberto(false);
 
       carregarAutores();
+
     } catch (error) {
+
       notifications.show({
         title: "Erro",
-        message: "Falha ao cadastrar autor",
+        message:
+          "Falha ao salvar autor",
         color: "red",
       });
+
+      console.error(error);
     }
   }
 
-  console.log("Autores:", autores);
-  console.log("Quantidade:", autores.length);
+  function editarAutor(autor: Autor) {
+    console.log("Editar:", autor);
+
+    setAutorSelecionado(autor);
+    setNome(autor.nome);
+    setModalAberto(true);
+  }
+
+  async function excluirAutorHandler(
+    id: number
+  ) {
+    const confirmar = window.confirm(
+      "Deseja realmente excluir este autor?"
+    );
+
+    if (!confirmar) {
+      return;
+    }
+
+    try {
+      await excluirAutor(id);
+
+      notifications.show({
+        title: "Sucesso",
+        message: "Autor removido com sucesso",
+        color: "green",
+      });
+
+      carregarAutores();
+
+    } catch (error) {
+
+      notifications.show({
+        title: "Erro",
+        message: "Falha ao remover autor",
+        color: "red",
+      });
+
+      console.error(error);
+    }
+  }
 
   return (
     <Box p="md">
@@ -82,8 +149,16 @@ export default function AutoresPage() {
 
       <Modal
         opened={modalAberto}
-        onClose={() => setModalAberto(false)}
-        title="Novo Autor"
+        onClose={() => {
+          setModalAberto(false);
+          setAutorSelecionado(null);
+          setNome("");
+        }}
+        title={
+          autorSelecionado
+            ? "Editar Autor"
+            : "Novo Autor"
+        }
       >
         <TextInput
           label="Nome"
@@ -92,8 +167,16 @@ export default function AutoresPage() {
           onChange={(event) => setNome(event.currentTarget.value)}
         />
 
-        <Button mt="md" fullWidth onClick={salvarAutor}>
-          Salvar
+        <Button
+          mt="md"
+          fullWidth
+          onClick={salvarAutor}
+        >
+          {
+            autorSelecionado
+              ? "Atualizar"
+              : "Salvar"
+          }
         </Button>
       </Modal>
 
